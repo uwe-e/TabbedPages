@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <controls:ExtendedTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:prism="http://prismlibrary.com"
-            prism:ViewModelLocator.AutowireViewModel="True"
-            xmlns:controls="clr-namespace:PrismPages.Controls"
-            xmlns:views="clr-namespace:PrismPages.Views"
-             x:Class="PrismPages.Views.MainPage"
-            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            android:TabbedPage.ToolbarPlacement="Bottom" NavigationPage.HasNavigationBar="False">
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:prism="http://prismlibrary.com"
+                             prism:ViewModelLocator.AutowireViewModel="True"
+                             xmlns:controls="clr-namespace:PrismPages.Controls"
+                             xmlns:views="clr-namespace:PrismPages.Views"
+                             x:Class="PrismPages.Views.MainPage"
+                             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+                             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                             ios:TabbedPage.TranslucencyMode="Opaque"
+                             android:TabbedPage.ToolbarPlacement="Bottom"
+                             NavigationPage.HasNavigationBar="False">
 
     <controls:ExtendedTabbedPage.TabHeaderContent>
-        <ContentView HeightRequest="50" BackgroundColor="Blue">
+        <ContentView HeightRequest="200">
             <StackLayout BackgroundColor="CornflowerBlue">
                 <Label Text="Welcome to the TabHeaderContent" TextColor="White"/>
             </StackLayout>

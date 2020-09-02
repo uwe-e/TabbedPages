@@ -28,13 +28,13 @@ namespace PrismPages.Controls
             //        self.InternalChildren.Add(newElement);
             //}
             //else
-            {
-                if (newElement != null)
-                {
-                    BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
-                }
+            //{
+            //    if (newElement != null)
+            //    {
+            //        BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
+            //    }
 
-            }
+            //}
 
         }
     }

@@ -9,6 +9,13 @@
             <StackLayout>
                 <Label Text="Hello Xamarin.Forms! This is Page1" />
             </StackLayout>
+        <!--<StackLayout>
+        <ContentView HeightRequest="50" BackgroundColor="Blue">
+            <StackLayout BackgroundColor="CornflowerBlue">
+                <Label Text="Welcome to the TabHeaderContent" TextColor="White"/>
+            </StackLayout>
+        </ContentView>
+</StackLayout>-->
     </ContentPage.Content>
     
 </ContentPage>

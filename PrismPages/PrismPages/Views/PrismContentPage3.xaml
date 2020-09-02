@@ -2,11 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:controls="clr-namespace:BSE.Tunes.XApp.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="PrismPages.Views.PrismContentPage3">
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             x:Class="PrismPages.Views.PrismContentPage3" NavigationPage.HasNavigationBar="False"
+             ios:TabbedPage.TranslucencyMode="Opaque"
+             x:Name="page">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Example Item"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello Xamarin.Forms! This is Page 3" />
-        </StackLayout>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout>
+                <!--<BoxView HeightRequest="100" WidthRequest="100" Background="red" />-->
+                <Label TextColor="Blue" Text="Hello Xamarin.Forms! This is Page 3" />
+                    <CollectionView ItemsSource="{Binding Items}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" TextColor="Black" Text="{Binding}" LineBreakMode="TailTruncation"/>
+                                    <Button Grid.Column="1"
+                                                        FontSize="18"
+                                                        Text="..."
+                                                        Command="{Binding Path=BindingContext.OpenFlyoutCommand, Source={x:Reference page}}"
+                                                        CommandParameter="{Binding}"
+                                                        BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                </StackLayout>
+            </StackLayout>
+            <controls:Flyout IsOpen="{Binding IsFlyoutOpen, Mode=TwoWay}"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All" BackgroundColor="#33000000"
+                             FlyoutBackgroundColor="Azure">
+
+                <StackLayout>
+                    <Label  BackgroundColor="LawnGreen" Text="ugugugugu"/>
+                    <Label Text="hshshsh"/>
+                    <Button Text="Add to playlist"/>
+                </StackLayout>
+
+            </controls:Flyout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

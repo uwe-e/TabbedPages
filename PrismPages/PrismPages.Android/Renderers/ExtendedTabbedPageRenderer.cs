@@ -33,32 +33,76 @@ namespace PrismPages.Droid.Renderers
                     if (relativeLayout.GetChildAt(1) is BottomNavigationView bottomNavigationView)
                     {
 
-                        AWidget.RelativeLayout.LayoutParams parms1 = new AWidget.RelativeLayout.LayoutParams(
-                            LayoutParams.MatchParent, 200);
-                        parms1.AddRule(AWidget.LayoutRules.Above, bottomNavigationView.Id);
+                        
 
-                        var txt = new TextView(Context);
-                        txt.Text = "HalloHallo";
-                        txt.SetBackgroundColor(Android.Graphics.Color.Red);
-                        txt.LayoutParameters = parms1;
+                        //var txt = new TextView(Context);
+                        //txt.Text = "HalloHallo";
+                        //txt.SetBackgroundColor(Android.Graphics.Color.Red);
+                        //txt.LayoutParameters = parms1;
 
                         var count = _relativeLayout.ChildCount;
 
-                        ExtendedTabbedPage tb = e.NewElement as ExtendedTabbedPage;
-                        //Android.Provider.SyncStateContract.Helpers.
 
-                        var viewRenderer = Platform.CreateRendererWithContext(tb.TabHeaderContent, Context);
-                        viewRenderer.Tracker.UpdateLayout();
-                        //viewRenderer.View.SetBackgroundColor(Android.Graphics.Color.Red);
-                        viewRenderer.View.LayoutParameters = parms1;
+                        ExtendedTabbedPage page = e.NewElement as ExtendedTabbedPage;
+                        var contentView = page.TabHeaderContent;
 
-                        _relativeLayout.AddView(viewRenderer.View, count);
+                        var renderer = Platform.CreateRendererWithContext(contentView, this.Context);
+                        
+                        if (Platform.GetRenderer(contentView) == null)
+                        {
+                            Platform.SetRenderer(contentView, renderer);
+                        }
+
+                            AWidget.RelativeLayout.LayoutParams layoutParms = new AWidget.RelativeLayout.LayoutParams(
+                                                    LayoutParams.MatchParent, (int)contentView.HeightRequest);
+                        layoutParms.AddRule(AWidget.LayoutRules.Above, bottomNavigationView.Id);
+
+
+
+                        
+                        //Platform.SetRenderer(renderer)
+                        renderer.Tracker.UpdateLayout();
+                        var nativeView = renderer.View;
+
+                        
+                        //view.SetBackground(Android.Widget.FrameLayout);
+                        nativeView.LayoutParameters = layoutParms;
+                        //SetNativeControl
+                        //view.Layout(0, 0, (int)tb.TabHeaderContent.WidthRequest, (int)tb.TabHeaderContent.HeightRequest);
+                        //view.tr
+                        _relativeLayout.AddView(nativeView);
+                        //_relativeLayout.UpdateViewLayout(view, parms1);
+                        //var view = ConvertFormsToNative(tb.TabHeaderContent, new Rectangle(0, 0, 100, 100));
+
+                        //_relativeLayout.AddView(view, count);
+                        //_relativeLayout.AddView(view);
 
                         //_relativeLayout.AddView(txt, count);
-
                     }
                 }
             }
         }
+
+        //internal static IVisualElementRenderer Convert(Xamarin.Forms.View source, Context context)
+        //{
+        //    var render = Platform.GetRenderer(source);
+        //    render = Platform.CreateRendererWithContext(source, context);
+        //    Platform.SetRenderer(source, render);
+        //    return render;
+        //}
+
+        //public static Android.Views.View ConvertFormsToNative(Xamarin.Forms.View view, Rectangle size)
+        //{
+        //    //Gets a null exception
+        //    var vRenderer = Platform.GetRenderer(view);
+        //    var viewGroup = vRenderer.View;
+        //    vRenderer.Tracker.UpdateLayout();
+        //    var layoutParams = new Android.Views.ViewGroup.LayoutParams((int)size.Width, (int)size.Height);
+        //    viewGroup.LayoutParameters = layoutParams;
+        //    view.Layout(size);
+        //    viewGroup.Layout(0, 0, (int)view.WidthRequest, (int)view.HeightRequest);
+        //    return viewGroup;
+        //}
+
     }
 }
